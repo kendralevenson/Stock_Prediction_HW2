@@ -33,11 +33,11 @@ if project_root not in sys.path:
 from src.feature_utils import extract_features
 
 # Access the secrets
-aws_id = st.secrets["aws_credentials"]["AWS_ACCESS_KEY_ID"]
-aws_secret = st.secrets["aws_credentials"]["AWS_SECRET_ACCESS_KEY"]
-aws_token = st.secrets["aws_credentials"]["AWS_SESSION_TOKEN"]
-aws_bucket = st.secrets["aws_credentials"]["AWS_BUCKET"]
-aws_endpoint = st.secrets["aws_credentials"]["AWS_ENDPOINT"]
+aws_id = st.secrets["aws_credentials"]["ASIARZCTM7SCDOUAW3IO"]
+aws_secret = st.secrets["aws_credentials"]["TKBK3jQ8I5sVJmEJGeWNDWlxM8bRjpp2KdOqc0BY"]
+aws_token = st.secrets["aws_credentials"]["IQoJb3JpZ2luX2VjELv//////////wEaCXVzLXdlc3QtMiJHMEUCIDUNb94n60g2uLP1Ohetm2ermPFxTVSkmyfKzNPQLvkKAiEA1reFK65jeLdZvcMZ/TC3LSC8jShqvWBthPorWREQJi4qsQIIhP//////////ARACGgwxMjI1ODE0ODI2MjgiDFggC60tXDQPqBCkeSqFAm4hi7lTKPRGogu/+kTODT56JXi67lafF+y5p10JbOMPJ5M1Yj9Adf/kjj6Jk/lgDgkR5l9aa02cBNoW3zO/X6NCiHHbyPtUXxomqSkfec31GCbP2s8tcrLJyPPaNX5CARJmvv4c9b0T/ak063x3ujg+bC2xB2YzDKZPBQn1ektzKXttjVFZDnu3qPnK8QV9A8fr2uQk1QDEMzyiCw6k2k65JpCwsbcFaJdcxT4JQgOjIrQkg9UTXGumQxr46Ps5lO0eo9xLtMGiATjTlMjccjwN2DXhA0AbgDjvkCymzA+0KH5VbXs63n7cu+N9008gqpY7y1usLeXrBijgKOYivJS+uIuNhzDlrt3MBjqdAZQcUBtfAQ+KhBHXMjkAK0PAMXT5iVtIbcaKbfS4o7jusaEDUHfPOlJp8bilnyk3+a3+2Jk1BBLrpEYjtJR6Zwp9cfSPn6ESQV8ApVTviZOO0zZBeSn+4ylllcGgzvaiTjk34Zkxxi+/Y+X9r5a38q4YaedKXU+S3OuAD3b5m6YrHlYagiauTH3/rV7dv68s3L7Mxn7GwYJ/jMkZ8jU="]
+aws_bucket = st.secrets["aws_credentials"]["kendra-stock-app-2026"]
+aws_endpoint = st.secrets["aws_credentials"]["https://s3.amazonaws.com"]
 
 # AWS Session Management
 @st.cache_resource # Use this to avoid downloading the file every time the page refreshes
@@ -59,8 +59,8 @@ MODEL_INFO = {
         "endpoint": aws_endpoint,
         "explainer": 'explainer.shap',
         "pipeline": 'finalized_model.tar.gz',
-        "keys": ["GOOGL", "IBM", "DEXJPUS", "DEXUSUK", "SP500", "DJIA", "VIXCLS"],
-        "inputs": [{"name": k, "type": "number", "min": -1.0, "max": 1.0, "default": 0.0, "step": 0.01} for k in ["GOOGL", "IBM", "DEXJPUS", "DEXUSUK", "SP500", "DJIA", "VIXCLS"]]
+        "keys": ["AAPL", "MSFT", "DEXJPUS", "DEXUSUK", "SP500", "DJIA", "VIXCLS"],
+        "inputs": [{"name": k, "type": "number", "min": -1.0, "max": 1.0, "default": 0.0, "step": 0.01} for k in ["AAPL", "MSFT", "DEXJPUS", "DEXUSUK", "SP500", "DJIA", "VIXCLS"]]
 }
 
 def load_pipeline(_session, bucket, key):
@@ -151,6 +151,9 @@ if submitted:
         display_explanation(input_df,session, aws_bucket)
     else:
         st.error(res)
+
+
+
 
 
 
